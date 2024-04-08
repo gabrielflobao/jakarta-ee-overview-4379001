@@ -1,8 +1,22 @@
 package dukes.greeting;
 
+import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
+
+import java.util.Optional;
+
 // The GreetingService should be a Stateless session bean
 // Hint: Check out the @Stateless annotation
+@Stateless
 public class GreetingService {
+    @Inject
+    GreetingRepository repository;
+
+
+    Greeting findAll() {
+        return repository.getAllGreetings().stream()
+                .findFirst().orElse(new Greeting("Hello, world!"));
+    }
 
     /**
      * Helpful documentation:
