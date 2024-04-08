@@ -1,8 +1,44 @@
 package dukes.greeting;
 
-// Make Greeting a Jakarta Persistence Entity that is not Cacheable
-public class Greeting {
+import jakarta.persistence.Cacheable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+import java.util.UUID;
+
+// Make Greeting a Jakarta Persistence Entity that is not Cacheabl
+@Entity(name = "Greeting")
+@Cacheable(value = false)
+public class Greeting {
+    @Id
+    private UUID id;
+
+    @Column(name = "message")
+    private String message;
+
+    public Greeting(String message) {
+        this.message = message;
+    }
+
+    public Greeting() {
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
     /**
      * Helpful documentation:
      * https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/entity

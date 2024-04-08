@@ -1,7 +1,11 @@
 package dukes.greeting;
 
 // Set the application path to ""
-public class GreetingApplication {
+
+import jakarta.ws.rs.ApplicationPath;
+
+@ApplicationPath("")
+public class GreetingApplication  {
     // Hint: This should be a Jakarta REST Application
 
     /**

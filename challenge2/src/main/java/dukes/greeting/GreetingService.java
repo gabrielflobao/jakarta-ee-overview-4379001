@@ -1,8 +1,28 @@
 package dukes.greeting;
 
+import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
+
+import java.time.LocalDate;
+import java.util.List;
+
 // The GreetingService should be a Stateless session bean
 // Hint: Check out the @Stateless annotation
+@Stateless
 public class GreetingService {
+
+    @Inject
+    GreetingRepository repository;
+
+    GreetingRecord findAll() {
+        Greeting request = repository.findAll();
+        GreetingRecord record = new GreetingRecord(request.getMessage(), LocalDate.now());
+       return record;
+    }
+
+    public void save(GreetingRecord record) {
+        repository.saveGreeting(record);
+    }
 
     /**
      * Helpful documentation:
